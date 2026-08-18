@@ -98,4 +98,4 @@ The system leverages diagnostic metrics based on the **Cleveland Heart Disease D
 
 ## License & Academic Note
 
-Created for academic evaluation and engineering demonstration. Not intended as a substitute for professional medical advice.
+Created for my skill evaluation and engineering demonstration. Not intended as a substitute for professional medical advice.
