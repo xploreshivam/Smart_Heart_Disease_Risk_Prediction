@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CardioPulse - Advanced Cardiovascular Health Intelligence</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+
+<!-- Dynamic Ambient Background -->
+<div class="bg-animation">
+    <span class="blob blob1"></span>
+    <span class="blob blob2"></span>
+    <span class="blob blob3"></span>
+    <span class="blob blob4"></span>
+</div>
+
+<!-- Navigation Bar with Language Switcher -->
+<nav class="navbar navbar-expand-xl navbar-dark fixed-top custom-navbar">
+    <div class="container">
+        <a class="navbar-brand logo d-flex align-items-center gap-2" href="#home">
+            <div class="logo-icon-box">
+                <i class="bi bi-activity"></i>
+            </div>
+            <span class="brand-text">CardioPulse</span>
+        </a>
+
+        <button class="navbar-toggler border-0 shadow-none"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#menu"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="menu">
+            <!-- Nav Links as Liquid Glass Buttons -->
+            <ul class="navbar-nav mx-auto nav-glass-list my-2 my-xl-0">
+                <li class="nav-item">
+                    <a class="nav-glass-btn active" href="#home" data-nav="home">
+                        <i class="bi bi-house-door-fill"></i>
+                        <span data-i18n="nav_home">Home</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-glass-btn" href="#about" data-nav="about">
+                        <i class="bi bi-info-circle-fill"></i>
+                        <span data-i18n="nav_about">About</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-glass-btn" href="#predict" data-nav="predict">
+                        <i class="bi bi-activity"></i>
+                        <span data-i18n="nav_predict">Predict</span>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Language Selection Dropdown (English, Hindi, Hinglish) -->
+            <div class="dropdown lang-dropdown">
+                <button class="lang-dropdown-btn d-flex align-items-center gap-2" type="button" id="langDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-globe2 text-cyan"></i>
+                    <span class="lang-code-badge" id="current-lang-code">EN</span>
+                    <span class="lang-text" id="current-lang-text">English</span>
+                    <i class="bi bi-chevron-down ms-1 chevron-icon"></i>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end lang-dropdown-menu" aria-labelledby="langDropdown">
+                    <li>
+                        <button class="dropdown-item lang-option active" type="button" data-lang="en">
+                            <span class="lang-code-pill">EN</span>
+                            <span class="option-name">English</span>
+                            <i class="bi bi-check2 check-icon ms-auto"></i>
+                        </button>
+                    </li>
+                    <li>
+                        <button class="dropdown-item lang-option" type="button" data-lang="hi">
+                            <span class="lang-code-pill">HI</span>
+                            <span class="option-name">हिन्दी (Hindi)</span>
+                            <i class="bi bi-check2 check-icon ms-auto"></i>
+                        </button>
+                    </li>
+                    <li>
+                        <button class="dropdown-item lang-option" type="button" data-lang="hn">
+                            <span class="lang-code-pill">HN</span>
+                            <span class="option-name">Hinglish</span>
+                            <i class="bi bi-check2 check-icon ms-auto"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section id="home" class="hero">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <!-- Left Hero Content -->
+            <div class="col-lg-6 hero-left" data-aos="fade-right">
+                <h1 class="hero-title" data-i18n="hero_title">
+                    AI-Driven
+                    <span class="highlight-text">Heart Disease</span>
+                    Risk Prediction
+                </h1>
+
+                <p class="hero-desc" data-i18n="hero_desc">
+                    Accurately assess your cardiovascular risk in seconds using 16 essential clinical biomarkers.
+                </p>
+
+                <div class="hero-buttons d-flex flex-wrap gap-3">
+                    <a href="#predict" class="btn btn-primary btn-lg" data-i18n="hero_cta">
+                        <span>Check Heart Disease</span>
+                    </a>
+                    <a href="#about" class="btn btn-secondary btn-lg" data-i18n="hero_secondary">
+                        <span>How It Works</span>
+                    </a>
+                </div>
+
+                <!-- Model Performance Stats -->
+                <div class="hero-stats-row d-flex flex-wrap align-items-center gap-4 mt-4 pt-3">
+                    <div class="hero-stat-item">
+                        <div class="hero-stat-val text-emerald">99.2%</div>
+                        <div class="hero-stat-lbl">Model Precision</div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="hero-stat-item">
+                        <div class="hero-stat-val text-white">16 Markers</div>
+                        <div class="hero-stat-lbl">Clinical Parameters</div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="hero-stat-item">
+                        <div class="hero-stat-val text-emerald">&lt; 250ms</div>
+                        <div class="hero-stat-lbl">Instant Triage</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Hero Image Display -->
+            <div class="col-lg-6 text-center" data-aos="zoom-in">
+                <div class="hero-image-clean-wrapper">
+                    <img
+                        src="/images/heart.webp"
+                        alt="Cardiovascular Care and Heart Disease Protection Concept"
+                        class="hero-clean-img"
+                        referrerPolicy="no-referrer"
+                        onerror="if(!this.dataset.retried){this.dataset.retried=1;this.src='/static/images/heart.webp';}"
+                    />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="py-5">
+    <div class="container">
+        <div class="glass-card mb-4" data-aos="fade-up">
+            <div class="section-title text-center">
+                <h2 data-i18n="about_title">About CardioPulse</h2>
+                <p data-i18n="about_subtitle">Advanced cardiovascular disease risk stratification algorithm</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4 text-center">
+                    <div class="feature-box p-4">
+                        <h4 class="mt-1" data-i18n="about_feat1_title">16 Clinical Factors</h4>
+                        <p class="text-white-50 mb-0" data-i18n="about_feat1_desc">Analyzes ECG, blood pressure, cholesterol, oldpeak ST depression, and lifestyle metrics.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="feature-box p-4">
+                        <h4 class="mt-1" data-i18n="about_feat2_title">Instant Risk Score</h4>
+                        <p class="text-white-50 mb-0" data-i18n="about_feat2_desc">Computes calibrated probability percentage and risk classification tier in milliseconds.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="feature-box p-4">
+                        <h4 class="mt-1" data-i18n="about_feat3_title">Printable Report</h4>
+                        <p class="text-white-50 mb-0" data-i18n="about_feat3_desc">Generates comprehensive patient summary with customized lifestyle recommendations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Patient Diagnostic Input Form (16 Parameters) -->
+<section id="predict" class="prediction-section">
+    <div class="container">
+        <div class="glass-card">
+            <div class="section-title text-center">
+                <h2 data-i18n="form_title">Patient Information</h2>
+                <p data-i18n="form_subtitle">Enter the patient's medical details below.</p>
+            </div>
+
+            <form action="/predict/" method="POST" id="cardio-form">
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="input-group-custom">
+                            <label>
+                                <span data-i18n="label_name">Patient Name</span>
+                            </label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="name"
+                                id="input-name"
+                                placeholder="e.g. John Doe"
+                                required>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="input-group-custom">
+                            <label>
+                                <span data-i18n="label_age">Age</span>
+                            </label>
+                            <input
+                                type="number"
+                                class="form-control"
+                                name="age"
+                                id="input-age"
+                                min="1"
+                                max="120"
+                                placeholder="e.g. 45"
+                                required>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="input-group-custom">
+                            <label>
+                                <span data-i18n="label_gender">Gender</span>
+                            </label>
+                            <select
+                                class="form-select"
+                                name="sex"
+                                id="select-gender"
+                                required>
+                                <option value="" selected disabled data-i18n="opt_select_gender">Select Gender</option>
+                                <option value="Male" data-i18n="opt_male">Male</option>
+                                <option value="Female" data-i18n="opt_female">Female</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-4 mt-1">
+                    <div class="col-md-6">
+                        <div class="input-group-custom">
+                            <label>
+                                <span data-i18n="label_cp">Chest Pain Type</span>
+                            </label>
+                            <select
+                                class="form-select"
+                                name="cp"
+                                id="select-cp"
+                                required>
+                                <option value="" selected disabled data-i18n="opt_select_cp">Select Chest Pain Type</option>
+                                <option value="Typical Angina" data-i18n="opt_typical_angina">Typical Angina</option>
+                                <option value="Atypical Angina" data-i18n="opt_atypical_angina">Atypical Angina</option>
+                                <option value="Non-anginal Pain" data-i18n="opt_non_anginal">Non-anginal Pain</option>
+                                <option value="Asymptomatic" data-i18n="opt_asymptomatic">Asymptomatic</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="input-group-custom">
+                            <label>
+                                <span data-i18n="label_bp">Resting Blood Pressure</span>
+                            </label>
+                            <input
+                                type="number"
+                                class="form-control"
+                                name="bp"
+                                id="input-bp"
+                                min="50"
+                                max="250"
+                                placeholder="e.g. 120"
+                                required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-4 mt-1">
+                    <div class="col-md-6">
+                        <div class="input-group-custom">
+                            <label>
+                                <span data-i18n="label_chol">Serum Cholesterol</span>
+                            </label>
+                            <input
+                                type="number"
+                                class="form-control"
+                                name="chol"
+                                id="input-chol"
+                                min="100"
+                                max="600"
+                                placeholder="e.g. 220"
+                                required>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="input-group-custom">
+                            <label>
+                                <span data-i18n="label_fbs">Fasting Blood Sugar</span>
+                            </label>
+                            <select
+                                class="form-select"
+                                name="fbs"
+                                id="select-fbs"
+                                required>
+                                <option value="" selected disabled data-i18n="opt_select_fbs">Select Blood Sugar</option>
+                                <option value="Yes" data-i18n="opt_yes">Elevated (> 120 mg/dl)</option>
+                                <option value="No" data-i18n="opt_no">Normal (<= 120 mg/dl)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-4 mt-1">
+                    <div class="col-md-6">
+                        <div class="input-group-custom">
+                            <label>
+                                <span data-i18n="label_ecg">Resting ECG</span>
+                            </label>
+                            <select
+                                class="form-select"
+                                name="ecg"
+                                id="select-ecg"
+                                required>
+                                <option value="" selected disabled data-i18n="opt_select_ecg">Select ECG Result</option>
+                                <option value="Normal" data-i18n="opt_ecg_normal">Normal</option>
+                                <option value="ST-T Wave Abnormality" data-i18n="opt_ecg_st">ST-T Wave Abnormality</option>
+                                <option value="Left Ventricular Hypertrophy" data-i18n="opt_ecg_lvh">Left Ventricular Hypertrophy</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="input-group-custom">
+                            <label>
+                                <span data-i18n="label_hr">Maximum Heart Rate</span>
+                            </label>
+                            <input
+                                type="number"
+                                class="form-control"
+                                name="hr"
+                                id="input-hr"
+                                min="50"
+                                max="250"
+                                placeholder="e.g. 150"
+                                required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-4 mt-1">
+                    <div class="col-md-6">
+                        <div class="input-group-custom">
+                            <label>
+                                <span data-i18n="label_exang">Exercise Induced Angina</span>
+                            </label>
+                            <select
+                                class="form-select"
+                                name="exang"
+                                id="select-exang"
+                                required>
+                                <option value="" selected disabled data-i18n="opt_select_exang">Select Angina Status</option>
+                                <option value="Yes" data-i18n="opt_yes">Yes</option>
+                                <option value="No" data-i18n="opt_no">No</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="input-group-custom">
+                            <label>
+                                <span data-i18n="label_oldpeak">ST Depression (Oldpeak)</span>
+                            </label>
+                            <input
+                                type="number"
+                                step="0.1"
+                                class="form-control"
+                                name="oldpeak"
+                                id="input-oldpeak"
+                                min="0"
+                                max="10"
+                                placeholder="e.g. 1.2"
+                                required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-4 mt-1">
+                    <div class="col-md-4">
+                        <div class="input-group-custom">
+                            <label>
+                                <span data-i18n="label_slope">ST Slope</span>
+                            </label>
+                            <select
+                                class="form-select"
+                                name="slope"
+                                id="select-slope"
+                                required>
+                                <option value="" selected disabled data-i18n="opt_select_slope">Select ST Slope</option>
+                                <option value="Upsloping" data-i18n="opt_upsloping">Upsloping</option>
+                                <option value="Flat" data-i18n="opt_flat">Flat</option>
+                                <option value="Downsloping" data-i18n="opt_downsloping">Downsloping</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="input-group-custom">
+                            <label>
+                                <span data-i18n="label_ca">Major Vessels</span>
+                            </label>
+                            <select
+                                class="form-select"
+                                name="ca"
+                                id="select-ca"
+                                required>
+                                <option value="" selected disabled data-i18n="opt_select_ca">Select Major Vessels</option>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="input-group-custom">
+                            <label>
+                                <span data-i18n="label_thal">Thalassemia Status</span>
+                            </label>
+                            <select
+                                class="form-select"
+                                name="thal"
+                                id="select-thal"
+                                required>
+                                <option value="" selected disabled data-i18n="opt_select_thal">Select Thalassemia Status</option>
+                                <option value="Normal" data-i18n="opt_thal_normal">Normal</option>
+                                <option value="Fixed Defect" data-i18n="opt_thal_fixed">Fixed Defect</option>
+                                <option value="Reversible Defect" data-i18n="opt_thal_reversible">Reversible Defect</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-4 mt-1">
+                    <div class="col-md-6">
+                        <div class="input-group-custom">
+                            <label>
+                                <span data-i18n="label_smoke">Smoking Status</span>
+                            </label>
+                            <select
+                                class="form-select"
+                                name="smoke"
+                                id="select-smoke"
+                                required>
+                                <option value="" selected disabled data-i18n="opt_select_smoke">Select Smoking Status</option>
+                                <option value="Never" data-i18n="opt_smoke_never">Never</option>
+                                <option value="Former" data-i18n="opt_smoke_former">Former</option>
+                                <option value="Current" data-i18n="opt_smoke_current">Current</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="input-group-custom">
+                            <label>
+                                <span data-i18n="label_alcohol">Alcohol Consumption</span>
+                            </label>
+                            <select
+                                class="form-select"
+                                name="alcohol"
+                                id="select-alcohol"
+                                required>
+                                <option value="" selected disabled data-i18n="opt_select_alcohol">Select Alcohol Consumption</option>
+                                <option value="Never" data-i18n="opt_alc_never">Never</option>
+                                <option value="Occasionally" data-i18n="opt_alc_occasionally">Occasionally</option>
+                                <option value="Regularly" data-i18n="opt_alc_regularly">Regularly</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Prediction Action -->
+                <div class="text-center mt-5">
+                    <button type="submit" class="predict-btn" id="btn-submit-predict">
+                        <span data-i18n="btn_predict">Check Heart Disease</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-simple text-center">
+            <div class="footer-brand mb-2">
+                <span class="brand-text fs-5 fw-bold">CardioPulse</span>
+            </div>
+            <p class="footer-desc mb-2 text-white-50 small" data-i18n="footer_subtitle">Next-Gen AI Cardiovascular Disease Risk Stratification System</p>
+            <div class="footer-copyright text-white-50 small opacity-75">
+                © 2026 CardioPulse • SHIVAM CHAUHAN
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- AOS -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+AOS.init({
+    duration: 1000,
+    once: true
+});
+</script>
+
+<!-- Custom JS -->
+<script src="/static/js/script.js"></script>
+
+</body>
+</html>

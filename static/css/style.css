@@ -1,0 +1,1015 @@
+/* ==========================================================================
+   CardioPulse - Smart Heart Disease Risk Prediction System
+   Stylesheet: Modern Dark Emerald & Glassmorphism Theme
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Design System & CSS Custom Properties
+   -------------------------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --bg-main: #061109;
+    --bg-card: rgba(8, 22, 13, 0.72);
+    --bg-card-border: rgba(52, 211, 153, 0.16);
+    --cyan-accent: #34d399;
+    --cyan-glow: rgba(52, 211, 153, 0.4);
+    --rose-accent: #f43f5e;
+    --rose-glow: rgba(244, 63, 94, 0.4);
+    --emerald-accent: #10b981;
+    --emerald-glow: rgba(16, 185, 129, 0.45);
+    --mint-accent: #6ee7b7;
+    --amber-accent: #f59e0b;
+    --violet-accent: #8b5cf6;
+    --text-primary: #ffffff;
+    --text-secondary: #94a3b8;
+}
+
+/* --------------------------------------------------------------------------
+   2. Global Resets & Typography
+   -------------------------------------------------------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, .brand-text, .predict-btn, .btn, .lang-dropdown-btn {
+    font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    overflow-x: hidden;
+    background: radial-gradient(circle at 50% -5%, #0e2918 0%, #07150c 45%, #030805 100%);
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    min-height: 100vh;
+    position: relative;
+}
+
+/* --------------------------------------------------------------------------
+   3. Animated Background Blobs
+   -------------------------------------------------------------------------- */
+.bg-animation {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: -2;
+    pointer-events: none;
+}
+
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(130px);
+    opacity: 0.35;
+    mix-blend-mode: screen;
+}
+
+.blob1 {
+    width: 520px;
+    height: 520px;
+    background: #059669;
+    top: -140px;
+    left: -100px;
+    animation: float1 22s infinite alternate ease-in-out;
+}
+
+.blob2 {
+    width: 440px;
+    height: 440px;
+    background: #10b981;
+    right: -120px;
+    top: 15%;
+    animation: float2 24s infinite alternate ease-in-out;
+}
+
+.blob3 {
+    width: 420px;
+    height: 420px;
+    background: #064e3b;
+    bottom: -100px;
+    left: 25%;
+    animation: float3 26s infinite alternate ease-in-out;
+}
+
+.blob4 {
+    width: 460px;
+    height: 460px;
+    background: #34d399;
+    bottom: -150px;
+    right: -120px;
+    animation: float4 28s infinite alternate ease-in-out;
+}
+
+@keyframes float1 {
+    from { transform: translate(0, 0) scale(1); }
+    to { transform: translate(140px, 110px) scale(1.15); }
+}
+
+@keyframes float2 {
+    from { transform: translate(0, 0) scale(1.1); }
+    to { transform: translate(-160px, 90px) scale(0.95); }
+}
+
+@keyframes float3 {
+    from { transform: translate(0, 0) scale(0.9); }
+    to { transform: translate(100px, -140px) scale(1.2); }
+}
+
+@keyframes float4 {
+    from { transform: translate(0, 0) scale(1.05); }
+    to { transform: translate(-180px, -90px) scale(0.9); }
+}
+
+/* --------------------------------------------------------------------------
+   4. Navigation Bar
+   -------------------------------------------------------------------------- */
+.custom-navbar {
+    background: rgba(6, 17, 10, 0.85);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border-bottom: 1px solid rgba(52, 211, 153, 0.14);
+    padding: 14px 0;
+    transition: all 0.3s ease;
+    z-index: 1050;
+}
+
+.logo {
+    text-decoration: none;
+}
+
+.logo-icon-box {
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.3), rgba(5, 150, 105, 0.25));
+    border: 1px solid rgba(52, 211, 153, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 18px rgba(16, 185, 129, 0.35);
+}
+
+.logo-icon-box i {
+    font-size: 22px;
+    color: #34d399;
+    animation: heartbeat 1.25s infinite ease-in-out;
+}
+
+.brand-text {
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: #ffffff;
+}
+
+@keyframes heartbeat {
+    0% { transform: scale(1); }
+    14% { transform: scale(1.22); }
+    28% { transform: scale(1); }
+    42% { transform: scale(1.16); }
+    70% { transform: scale(1); }
+}
+
+/* Navigation Links */
+.nav-glass-list {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    list-style: none;
+    padding: 5px 8px;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(52, 211, 153, 0.12);
+}
+
+.nav-glass-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 20px;
+    border-radius: 9999px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #cbd5e1 !important;
+    text-decoration: none;
+    transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+    isolation: isolate;
+}
+
+.nav-glass-btn:hover {
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: inset 1px 1px 0px -1px rgba(255, 255, 255, 0.8), 0 4px 12px rgba(16, 185, 129, 0.25);
+    transform: translateY(-2px);
+}
+
+.nav-glass-btn.active {
+    color: #ffffff !important;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.4), rgba(5, 150, 105, 0.45));
+    box-shadow: inset 1.5px 1.5px 0px -1.5px rgba(255, 255, 255, 0.95), inset 0 0 3px 1px rgba(255, 255, 255, 0.4), 0 4px 18px rgba(16, 185, 129, 0.4);
+    border: 1px solid rgba(52, 211, 153, 0.4);
+}
+
+/* --------------------------------------------------------------------------
+   5. Multi-Language Dropdown
+   -------------------------------------------------------------------------- */
+.lang-dropdown {
+    position: relative;
+}
+
+.lang-dropdown-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 18px;
+    border-radius: 9999px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: 1px solid rgba(52, 211, 153, 0.2) !important;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: inset 1px 1px 0px -1px rgba(255, 255, 255, 0.8), 0 6px 16px rgba(0, 0, 0, 0.3);
+    transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+    outline: none !important;
+}
+
+.lang-dropdown-btn:hover,
+.lang-dropdown-btn:focus,
+.lang-dropdown.show .lang-dropdown-btn {
+    background: rgba(255, 255, 255, 0.12) !important;
+    border-color: rgba(52, 211, 153, 0.6) !important;
+    transform: translateY(-2px);
+    box-shadow: inset 1px 1px 0px -1px rgba(255, 255, 255, 1), 0 8px 24px rgba(16, 185, 129, 0.35);
+}
+
+.lang-dropdown-btn .chevron-icon {
+    transition: transform 0.25s ease;
+    font-size: 11px;
+}
+
+.lang-dropdown.show .lang-dropdown-btn .chevron-icon {
+    transform: rotate(180deg);
+}
+
+.lang-dropdown-menu {
+    background: rgba(6, 19, 11, 0.94) !important;
+    backdrop-filter: blur(28px) saturate(190%) !important;
+    -webkit-backdrop-filter: blur(28px) saturate(190%) !important;
+    border: 1px solid rgba(52, 211, 153, 0.2) !important;
+    border-radius: 20px !important;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.65), 0 0 25px rgba(16, 185, 129, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+    padding: 8px !important;
+    min-width: 190px !important;
+    margin-top: 10px !important;
+    animation: dropdownFadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lang-code-badge {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    padding: 2px 7px;
+    border-radius: 6px;
+    background: rgba(16, 185, 129, 0.2);
+    border: 1px solid rgba(52, 211, 153, 0.4);
+    color: #6ee7b7;
+}
+
+.lang-code-pill {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    padding: 3px 8px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #cbd5e1;
+}
+
+.lang-option {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    padding: 10px 14px !important;
+    border-radius: 12px !important;
+    color: #cbd5e1 !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    background: transparent !important;
+    border: none !important;
+    width: 100% !important;
+    transition: all 0.2s ease !important;
+    cursor: pointer !important;
+}
+
+.lang-option:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: #ffffff !important;
+    transform: translateX(4px);
+}
+
+.lang-option.active {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.35), rgba(5, 150, 105, 0.35)) !important;
+    color: #34d399 !important;
+    font-weight: 700 !important;
+    box-shadow: inset 1px 1px 0px -1px rgba(255, 255, 255, 0.7);
+}
+
+.lang-option .check-icon {
+    font-size: 15px;
+    color: #34d399;
+    display: none;
+}
+
+.lang-option.active .check-icon {
+    display: inline-block;
+}
+
+@keyframes dropdownFadeIn {
+    from { opacity: 0; transform: translateY(-8px) scale(0.96); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* --------------------------------------------------------------------------
+   6. Buttons & Interactive Controls (Unified Liquid Glass Aesthetic)
+   -------------------------------------------------------------------------- */
+.btn,
+.btn-primary,
+.btn-warning,
+.btn-secondary,
+.predict-btn,
+.nav-glass-btn,
+.lang-dropdown-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    border-radius: 9999px !important;
+    outline: none !important;
+    color: #ffffff !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    text-decoration: none;
+    backdrop-filter: blur(18px) saturate(180%);
+    -webkit-backdrop-filter: blur(18px) saturate(180%);
+    transition: all 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+    isolation: isolate;
+}
+
+/* Primary Liquid Glass Button (Emerald Green) */
+.btn-primary {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.55), rgba(5, 150, 105, 0.65)) !important;
+    border: 1px solid rgba(52, 211, 153, 0.5) !important;
+    box-shadow: inset 1.5px 1.5px 0px -1.5px rgba(255, 255, 255, 0.95), 
+                inset 0 0 5px 1px rgba(255, 255, 255, 0.4), 
+                0 8px 25px rgba(16, 185, 129, 0.42) !important;
+    padding: 14px 34px;
+    font-size: 16px;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.7), rgba(5, 150, 105, 0.8)) !important;
+    border-color: rgba(52, 211, 153, 0.8) !important;
+    box-shadow: inset 1.5px 1.5px 0px -1.5px rgba(255, 255, 255, 1), 
+                inset 0 0 8px 2px rgba(255, 255, 255, 0.6), 
+                0 12px 35px rgba(16, 185, 129, 0.6) !important;
+    transform: translateY(-3px) scale(1.02);
+    color: #ffffff !important;
+}
+
+/* Secondary Liquid Glass Button (Frosted Crystal) */
+.btn-secondary {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.05)) !important;
+    border: 1px solid rgba(52, 211, 153, 0.25) !important;
+    box-shadow: inset 1.5px 1.5px 0px -1.5px rgba(255, 255, 255, 0.85), 
+                inset 0 0 4px 1px rgba(255, 255, 255, 0.25), 
+                0 6px 20px rgba(0, 0, 0, 0.35) !important;
+    padding: 14px 34px;
+    font-size: 16px;
+    color: #e2e8f0 !important;
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1)) !important;
+    border-color: rgba(52, 211, 153, 0.6) !important;
+    box-shadow: inset 1.5px 1.5px 0px -1.5px rgba(255, 255, 255, 1), 
+                inset 0 0 6px 2px rgba(255, 255, 255, 0.4), 
+                0 10px 28px rgba(16, 185, 129, 0.35) !important;
+    transform: translateY(-3px) scale(1.02);
+    color: #ffffff !important;
+}
+
+/* Warning Liquid Glass Button (Warm Amber) */
+.btn-warning {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.55), rgba(217, 119, 6, 0.65)) !important;
+    border: 1px solid rgba(251, 191, 36, 0.55) !important;
+    box-shadow: inset 1.5px 1.5px 0px -1.5px rgba(255, 255, 255, 0.95), 
+                inset 0 0 5px 1px rgba(255, 255, 255, 0.45), 
+                0 8px 25px rgba(245, 158, 11, 0.42) !important;
+    padding: 14px 34px;
+    font-size: 16px;
+    color: #ffffff !important;
+}
+
+.btn-warning:hover {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.72), rgba(217, 119, 6, 0.82)) !important;
+    border-color: rgba(251, 191, 36, 0.85) !important;
+    box-shadow: inset 1.5px 1.5px 0px -1.5px rgba(255, 255, 255, 1), 
+                inset 0 0 8px 2px rgba(255, 255, 255, 0.65), 
+                0 12px 35px rgba(245, 158, 11, 0.6) !important;
+    transform: translateY(-3px) scale(1.02);
+    color: #ffffff !important;
+}
+
+/* Hero & Assessment Submit Button (Large Liquid Glass Pill) */
+.predict-btn {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.65), rgba(5, 150, 105, 0.75)) !important;
+    border: 1.5px solid rgba(52, 211, 153, 0.6) !important;
+    box-shadow: inset 2px 2px 0px -1.5px rgba(255, 255, 255, 0.95), 
+                inset 0 0 6px 2px rgba(255, 255, 255, 0.45), 
+                0 12px 36px rgba(16, 185, 129, 0.5) !important;
+    padding: 16px 52px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.predict-btn:hover {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.8), rgba(5, 150, 105, 0.9)) !important;
+    border-color: rgba(52, 211, 153, 0.9) !important;
+    box-shadow: inset 2px 2px 0px -1.5px rgba(255, 255, 255, 1), 
+                inset 0 0 10px 3px rgba(255, 255, 255, 0.65), 
+                0 16px 45px rgba(16, 185, 129, 0.68) !important;
+    transform: translateY(-4px) scale(1.03);
+    color: #ffffff !important;
+}
+
+/* Active Click Feedback */
+.btn:active,
+.btn-primary:active,
+.btn-secondary:active,
+.btn-warning:active,
+.predict-btn:active,
+.nav-glass-btn:active,
+.lang-dropdown-btn:active {
+    transform: translateY(1px) scale(0.98) !important;
+}
+
+/* --------------------------------------------------------------------------
+   7. Hero Section & Showcase
+   -------------------------------------------------------------------------- */
+.hero {
+    padding: 150px 0 90px;
+    position: relative;
+}
+
+.hero-title {
+    font-size: 52px;
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 22px;
+    letter-spacing: -1px;
+}
+
+.highlight-text {
+    background: linear-gradient(135deg, #ffffff 0%, #6ee7b7 45%, #10b981 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
+.hero-desc {
+    font-size: 18px;
+    color: #94a3b8;
+    line-height: 1.7;
+    margin-bottom: 30px;
+    max-width: 540px;
+}
+
+.hero-stats-row {
+    border-top: 1px solid rgba(52, 211, 153, 0.15);
+}
+
+.hero-stat-item {
+    text-align: left;
+}
+
+.hero-stat-val {
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.hero-stat-lbl {
+    font-size: 12px;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.stat-divider {
+    width: 1px;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.hero-image-clean-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.hero-clean-img {
+    max-width: 100%;
+    height: auto;
+    max-height: 450px;
+    object-fit: contain;
+    border-radius: 24px;
+    animation: cardiacFloatGlow 5.5s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.4s ease;
+    will-change: transform, filter;
+    transform-origin: center center;
+}
+
+.hero-clean-img:hover {
+    transform: scale(1.05) translateY(-8px);
+    filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 55px rgba(52, 211, 153, 0.55));
+    cursor: pointer;
+}
+
+@keyframes cardiacFloatGlow {
+    0%, 100% {
+        transform: translateY(0px) scale(1);
+        filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.65)) drop-shadow(0 0 25px rgba(16, 185, 129, 0.25));
+    }
+    50% {
+        transform: translateY(-8px) scale(1.03);
+        filter: drop-shadow(0 25px 48px rgba(0, 0, 0, 0.75)) drop-shadow(0 0 45px rgba(52, 211, 153, 0.45));
+    }
+}
+
+/* --------------------------------------------------------------------------
+   8. Glass Cards & Features
+   -------------------------------------------------------------------------- */
+.glass-card {
+    background: linear-gradient(135deg, rgba(9, 25, 15, 0.78) 0%, rgba(5, 14, 9, 0.88) 100%);
+    backdrop-filter: blur(28px) saturate(190%);
+    -webkit-backdrop-filter: blur(28px) saturate(190%);
+    border: 1px solid rgba(52, 211, 153, 0.16);
+    border-radius: 32px;
+    padding: 48px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 25px 60px rgba(0, 0, 0, 0.65), 0 0 35px rgba(16, 185, 129, 0.08);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.glass-card:hover {
+    border-color: rgba(52, 211, 153, 0.25);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 30px 70px rgba(0, 0, 0, 0.7), 0 0 45px rgba(16, 185, 129, 0.14);
+}
+
+.section-title h2 {
+    font-size: 38px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+.section-title p {
+    font-size: 16px;
+    color: #94a3b8;
+    margin-bottom: 40px;
+}
+
+.feature-box {
+    border-radius: 24px;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.04) 0%, rgba(16, 185, 129, 0.02) 100%);
+    border: 1px solid rgba(52, 211, 153, 0.12);
+    padding: 32px 24px;
+    transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+    height: 100%;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.feature-box:hover {
+    transform: translateY(-8px);
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(16, 185, 129, 0.08) 100%);
+    border-color: rgba(52, 211, 153, 0.45);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 20px 45px rgba(0, 0, 0, 0.45), 0 0 30px rgba(16, 185, 129, 0.25);
+}
+
+/* --------------------------------------------------------------------------
+   9. Form Controls & Inputs
+   -------------------------------------------------------------------------- */
+.input-group-custom {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-group-custom label {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #cbd5e1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: 0.2px;
+}
+
+.form-control,
+.form-select {
+    background: rgba(4, 12, 7, 0.75) !important;
+    border: 1px solid rgba(52, 211, 153, 0.18) !important;
+    border-radius: 16px !important;
+    color: #ffffff !important;
+    padding: 14px 20px !important;
+    font-size: 15px !important;
+    transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.35) !important;
+}
+
+.form-control::placeholder {
+    color: #64748b !important;
+}
+
+.form-select option {
+    background: #06150b;
+    color: #ffffff;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #34d399 !important;
+    background: rgba(6, 18, 11, 0.9) !important;
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.25), inset 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+    outline: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   10. Prediction Result Page & Gauges
+   -------------------------------------------------------------------------- */
+.result-section {
+    padding: 140px 0 80px;
+}
+
+.result-card {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.badge-ai-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 20px;
+    border-radius: 9999px;
+    background: rgba(16, 185, 129, 0.12);
+    border: 1px solid rgba(52, 211, 153, 0.35);
+    color: #6ee7b7;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.badge-ai-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #34d399;
+    box-shadow: 0 0 10px #34d399;
+}
+
+.risk-circle {
+    display: inline-block;
+    padding: 15px;
+}
+
+.outer-circle {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: conic-gradient(#10b981 0%, #34d399 35%, #059669 70%, #f43f5e 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 40px rgba(16, 185, 129, 0.35);
+    transition: all 0.5s ease;
+}
+
+.inner-circle {
+    width: 175px;
+    height: 175px;
+    border-radius: 50%;
+    background: #06150b;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(52, 211, 153, 0.2);
+    box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.8);
+}
+
+.inner-circle h1 {
+    font-size: 42px;
+    font-weight: 900;
+    margin: 0;
+    background: linear-gradient(135deg, #ffffff 0%, #6ee7b7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.inner-circle p {
+    font-size: 13px;
+    color: #a7f3d0;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.risk-level {
+    font-size: 26px;
+    font-weight: 800;
+    color: #34d399;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.prediction-box {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 24px;
+    border-radius: 24px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(16, 185, 129, 0.03) 100%);
+    border: 1px solid rgba(52, 211, 153, 0.16);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 12px 35px rgba(0, 0, 0, 0.4);
+}
+
+.prediction-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+}
+
+.prediction-icon.danger {
+    background: rgba(244, 63, 94, 0.2);
+    border: 1px solid rgba(244, 63, 94, 0.4);
+    color: #f43f5e;
+    box-shadow: 0 4px 20px rgba(244, 63, 94, 0.3);
+}
+
+.prediction-icon.success {
+    background: rgba(16, 185, 129, 0.25);
+    border: 1px solid rgba(52, 211, 153, 0.45);
+    color: #34d399;
+    box-shadow: 0 4px 20px rgba(16, 185, 129, 0.35);
+}
+
+.prediction-outcome-text {
+    font-size: 28px;
+    font-weight: 800;
+    margin: 0;
+}
+
+.patient-card,
+.ai-card,
+.glass-small {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.04) 0%, rgba(16, 185, 129, 0.02) 100%);
+    border: 1px solid rgba(52, 211, 153, 0.14);
+    border-radius: 24px;
+    padding: 24px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.risk-badge {
+    padding: 6px 16px;
+    border-radius: 9999px;
+    font-weight: 700;
+    font-size: 13px;
+    background: rgba(16, 185, 129, 0.2);
+    border: 1px solid rgba(52, 211, 153, 0.4);
+    color: #6ee7b7;
+}
+
+.factor {
+    margin-bottom: 18px;
+}
+
+.factor span {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.progress {
+    height: 8px;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.recommend-card {
+    display: flex;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.recommend-card:last-child {
+    border-bottom: none;
+}
+
+.recommend-card i {
+    font-size: 24px;
+    margin-top: 2px;
+}
+
+.recommend-card h6 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.recommend-card p {
+    font-size: 13px;
+    color: #94a3b8;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* --------------------------------------------------------------------------
+   11. Footer & Utility Classes
+   -------------------------------------------------------------------------- */
+.footer {
+    padding: 36px 0 28px;
+    border-top: 1px solid rgba(52, 211, 153, 0.1);
+    background: rgba(4, 12, 7, 0.94);
+    margin-top: 60px;
+}
+
+.footer-simple {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.footer-brand .brand-text {
+    letter-spacing: -0.3px;
+}
+
+.footer-desc {
+    letter-spacing: 0.2px;
+}
+
+.footer-copyright {
+    letter-spacing: 0.3px;
+}
+
+.text-cyan { color: var(--cyan-accent) !important; }
+.text-mint { color: var(--mint-accent) !important; }
+.text-rose { color: var(--rose-accent) !important; }
+.text-emerald { color: var(--emerald-accent) !important; }
+.text-amber { color: var(--amber-accent) !important; }
+.text-violet { color: var(--violet-accent) !important; }
+
+/* --------------------------------------------------------------------------
+   12. Responsive Design
+   -------------------------------------------------------------------------- */
+@media (max-width: 991px) {
+    .hero-title {
+        font-size: 40px;
+    }
+    .glass-card {
+        padding: 30px 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-title {
+        font-size: 32px;
+    }
+    .predict-btn {
+        padding: 14px 30px;
+        font-size: 17px;
+        width: 100%;
+    }
+    .nav-glass-list {
+        flex-direction: column;
+        width: 100%;
+        border-radius: 20px;
+    }
+    .nav-glass-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   13. Print & PDF Export Stylesheet
+   -------------------------------------------------------------------------- */
+@media print {
+    body {
+        background: #ffffff !important;
+        color: #111827 !important;
+    }
+
+    .result-section {
+        padding: 10px 0 !important;
+    }
+
+    .bg-animation,
+    .custom-navbar,
+    .footer,
+    .btn,
+    .hero-buttons,
+    .lang-dropdown,
+    .no-print-section,
+    button {
+        display: none !important;
+    }
+
+    .glass-card,
+    .result-card,
+    .patient-card,
+    .ai-card,
+    .glass-small {
+        background: #ffffff !important;
+        border: 1px solid #e5e7eb !important;
+        box-shadow: none !important;
+        color: #111827 !important;
+        backdrop-filter: none !important;
+        padding: 24px !important;
+    }
+
+    .text-white-50 {
+        color: #4b5563 !important;
+    }
+
+    .prediction-box {
+        background: #f3f4f6 !important;
+        border: 1px solid #d1d5db !important;
+        color: #111827 !important;
+    }
+
+    .prediction-outcome-text,
+    h1, h2, h3, h4, h5, h6, strong {
+        color: #111827 !important;
+    }
+
+    .outer-circle {
+        box-shadow: none !important;
+        border: 4px solid #10b981 !important;
+    }
+
+    .inner-circle {
+        background: #ffffff !important;
+        color: #111827 !important;
+    }
+
+    .inner-circle h1,
+    .inner-circle p {
+        color: #111827 !important;
+    }
+
+    .progress {
+        background: #e5e7eb !important;
+    }
+
+    .recommend-card {
+        background: #f9fafb !important;
+        border: 1px solid #e5e7eb !important;
+        color: #111827 !important;
+    }
+
+    .recommend-card h6 {
+        color: #111827 !important;
+    }
+
+    .recommend-card p {
+        color: #4b5563 !important;
+    }
+}
