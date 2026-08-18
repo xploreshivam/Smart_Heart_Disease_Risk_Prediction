@@ -1,7 +1,4 @@
 # CardioPulse - Smart Heart Disease Risk Prediction System
-
-> **Academic Project Submission**  
-> **Degree**: Bachelor of Technology (B.Tech) - 3rd Year  
 > **Domain**: Healthcare Informatics & Predictive Modeling  
 
 ---
