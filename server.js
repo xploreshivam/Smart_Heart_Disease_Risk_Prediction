@@ -1,8 +1,5 @@
-/**
- * ==========================================================================
- * CardioPulse - Smart Heart Disease Risk Prediction System
- * Server Entry: Express.js + EJS View Engine + Secure Risk Scoring Model
- * ==========================================================================
+/*
+  CardioPulse - Smart Heart Disease Risk Prediction System
  */
 
 import express from 'express';
@@ -48,14 +45,6 @@ app.use('/js', express.static(path.join(__dirname, 'static', 'js'), { maxAge: '1
 // 2. Input Sanitization & Whitelist Validation Utilities
 // --------------------------------------------------------------------------
 
-/**
- * Sanitizes text input to prevent XSS, injection, and control character attacks.
- * 
- * @param {any} input Raw input from request
- * @param {number} maxLength Maximum allowed string length
- * @param {string} fallback Default value if input is invalid
- * @returns {string} Sanitized string
- */
 function sanitizeString(input, maxLength = 60, fallback = 'Patient') {
     if (typeof input !== 'string') return fallback;
     const sanitized = input
@@ -66,29 +55,14 @@ function sanitizeString(input, maxLength = 60, fallback = 'Patient') {
     return sanitized.length > 0 ? sanitized : fallback;
 }
 
-/**
- * Enforces numeric bounds on clinical inputs to prevent out-of-range anomalies.
- * 
- * @param {any} input Raw input value
- * @param {number} min Minimum acceptable value
- * @param {number} max Maximum acceptable value
- * @param {number} fallback Default value if invalid
- * @returns {number} Clamped numeric value
- */
+
 function sanitizeNumber(input, min, max, fallback) {
     const num = parseFloat(input);
     if (isNaN(num)) return fallback;
     return Math.min(max, Math.max(min, num));
 }
 
-/**
- * Validates categorical inputs against an allowed whitelist.
- * 
- * @param {any} input Value to check
- * @param {string[]} allowedList Whitelist array of allowed options
- * @param {string} fallback Default option
- * @returns {string} Whitelisted value
- */
+
 function sanitizeEnum(input, allowedList, fallback) {
     if (typeof input !== 'string') return fallback;
     const matched = allowedList.find(opt => opt.toLowerCase() === input.trim().toLowerCase());
@@ -98,12 +72,7 @@ function sanitizeEnum(input, allowedList, fallback) {
 // --------------------------------------------------------------------------
 // 3. Cardiovascular Risk Prediction Engine (16 Clinical Biomarkers)
 // --------------------------------------------------------------------------
-/**
- * Evaluates patient clinical biomarkers and computes risk probability.
- * 
- * @param {Object} rawData Patient diagnostic input payload
- * @returns {Object} Validated risk metrics, severity classification, and indicator scores
- */
+
 function calculateHeartRisk(rawData) {
     const data = rawData || {};
 
