@@ -111,25 +111,25 @@
                         </div>
                     </div>
 
-                    <h3 class="risk-level mt-3" data-i18n="<%= levelKey || 'level_low' %>"><%= level %></h3>
+                    <h3 class="risk-level mt-3" data-i18n="{{ levelKey or 'level_low' }}">{{ level }}</h3>
                 </div>
 
                 <!-- RIGHT: PREDICTION & PATIENT SUMMARY -->
                 <div class="col-lg-7">
                     <div class="prediction-box">
-                        <% if (prediction === "Heart Disease Detected") { %>
+                        {% if prediction == "Heart Disease Detected" %}
                         <div class="prediction-icon danger">
                             <i class="bi bi-heart-pulse-fill"></i>
                         </div>
-                        <% } else { %>
+                        {% else %}
                         <div class="prediction-icon success">
                             <i class="bi bi-heart-fill"></i>
                         </div>
-                        <% } %>
+                        {% endif %}
 
                         <div>
                             <h5 data-i18n="res_outcome_title">Prediction Outcome</h5>
-                            <h2 class="prediction-outcome-text" data-i18n="<%= predictionKey || 'out_not_detected' %>"><%= prediction %></h2>
+                            <h2 class="prediction-outcome-text" data-i18n="{{ predictionKey or 'out_not_detected' }}">{{ prediction }}</h2>
                         </div>
                     </div>
 
@@ -145,17 +145,17 @@
                             <tbody>
                                 <tr>
                                     <td class="text-white-50" data-i18n="label_name">Patient Name</td>
-                                    <td><strong><%= name %></strong></td>
+                                    <td><strong>{{ name }}</strong></td>
                                 </tr>
                                 <tr>
                                     <td class="text-white-50" data-i18n="res_probability_label">AI Probability / Risk</td>
-                                    <td><strong><%= risk %> %</strong></td>
+                                    <td><strong>{{ risk }} %</strong></td>
                                 </tr>
                                 <tr>
                                     <td class="text-white-50" data-i18n="res_category_label">Risk Category</td>
                                     <td>
-                                        <span class="risk-badge" data-i18n="<%= levelKey || 'level_low' %>">
-                                            <%= level %>
+                                        <span class="risk-badge" data-i18n="{{ levelKey or 'level_low' }}">
+                                            {{ level }}
                                         </span>
                                     </td>
                                 </tr>
@@ -172,7 +172,7 @@
                         </h4>
                         <p class="text-white-50 mb-0" data-i18n="res_ai_analysis_desc">
                             The prediction has been computed using a trained Random Forest cardiovascular risk assessment engine. 
-                            The risk percentage represents calibrated disease probability based on 16 clinical factors including resting BP, cholesterol levels, ECG dynamics, exercise ST depression, and lifestyle metrics.
+                            The risk percentage represents calibrated disease probability based on clinical factors including resting BP, cholesterol levels, ECG dynamics, exercise ST depression, and lifestyle metrics.
                         </p>
                     </div>
                 </div>
@@ -192,11 +192,11 @@
                         <div class="factor">
                             <div class="d-flex justify-content-between mb-1">
                                 <span data-i18n="label_bp">Resting Blood Pressure</span>
-                                <small class="text-white-50"><%= bpValue %> mmHg</small>
+                                <small class="text-white-50">{{ bpValue }} mmHg</small>
                             </div>
                             <div class="progress">
-                                <div class="progress-bar <%= bpScore > 70 ? 'bg-danger' : (bpScore > 40 ? 'bg-warning' : 'bg-success') %>"
-                                    style="width: <%= bpScore %>%">
+                                <div class="progress-bar {% if bpScore > 70 %}bg-danger{% elif bpScore > 40 %}bg-warning{% else %}bg-success{% endif %}"
+                                    data-width="{{ bpScore }}">
                                 </div>
                             </div>
                         </div>
@@ -204,11 +204,11 @@
                         <div class="factor">
                             <div class="d-flex justify-content-between mb-1">
                                 <span data-i18n="label_chol">Serum Cholesterol</span>
-                                <small class="text-white-50"><%= cholValue %> mg/dL</small>
+                                <small class="text-white-50">{{ cholValue }} mg/dL</small>
                             </div>
                             <div class="progress">
-                                <div class="progress-bar <%= cholScore > 70 ? 'bg-danger' : (cholScore > 40 ? 'bg-warning' : 'bg-success') %>"
-                                    style="width: <%= cholScore %>%">
+                                <div class="progress-bar {% if cholScore > 70 %}bg-danger{% elif cholScore > 40 %}bg-warning{% else %}bg-success{% endif %}"
+                                    data-width="{{ cholScore }}">
                                 </div>
                             </div>
                         </div>
@@ -216,11 +216,11 @@
                         <div class="factor">
                             <div class="d-flex justify-content-between mb-1">
                                 <span data-i18n="label_smoke">Smoking Status</span>
-                                <small class="text-white-50"><%= smokeValue %></small>
+                                <small class="text-white-50">{{ smokeValue }}</small>
                             </div>
                             <div class="progress">
-                                <div class="progress-bar <%= smokeScore > 60 ? 'bg-danger' : (smokeScore > 30 ? 'bg-info' : 'bg-success') %>"
-                                    style="width: <%= smokeScore %>%">
+                                <div class="progress-bar {% if smokeScore > 60 %}bg-danger{% elif smokeScore > 30 %}bg-info{% else %}bg-success{% endif %}"
+                                    data-width="{{ smokeScore }}">
                                 </div>
                             </div>
                         </div>
@@ -228,11 +228,11 @@
                         <div class="factor">
                             <div class="d-flex justify-content-between mb-1">
                                 <span data-i18n="label_exang">Exercise Induced Angina</span>
-                                <small class="text-white-50"><%= exangValue %></small>
+                                <small class="text-white-50">{{ exangValue }}</small>
                             </div>
                             <div class="progress">
-                                <div class="progress-bar <%= exangScore > 60 ? 'bg-danger' : 'bg-success' %>"
-                                    style="width: <%= exangScore %>%">
+                                <div class="progress-bar {% if exangScore > 60 %}bg-danger{% else %}bg-success{% endif %}"
+                                    data-width="{{ exangScore }}">
                                 </div>
                             </div>
                         </div>
@@ -317,8 +317,8 @@
 </footer>
 
 <!-- Hidden Risk Value for JavaScript Gauge Animation -->
-<input type="hidden" id="risk-value" value="<%= risk %>">
-<input type="hidden" id="patient-name-val" value="<%= name %>">
+<input type="hidden" id="risk-value" value="{{ risk }}">
+<input type="hidden" id="patient-name-val" value="{{ name }}">
 
 <!-- Bootstrap -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

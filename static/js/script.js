@@ -501,6 +501,13 @@ function initializeGauge() {
         }
         counter.innerText = current.toFixed(1) + "%";
     }, intervalTime);
+
+    // Animate factor progress bars
+    document.querySelectorAll(".progress-bar[data-width]").forEach(bar => {
+        const targetWidth = bar.getAttribute("data-width") || "0";
+        bar.style.width = targetWidth + "%";
+        bar.style.transition = "width 1s ease-in-out";
+    });
 }
 
 // --------------------------------------------------------------------------

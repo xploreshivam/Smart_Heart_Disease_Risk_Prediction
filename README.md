@@ -1,82 +1,124 @@
-# CardioPulse - Smart Heart Disease Risk Prediction System
-> **Domain**: Healthcare Informatics & Predictive Modeling  
+# Smart Heart Disease Risk Prediction
 
----
+A machine learning based web application that estimates the risk of cardiovascular disease using clinical patient parameters. The application uses a Random Forest Classifier trained on the Cleveland Heart Disease dataset and serves predictions through a Flask web interface.
 
-## Project Overview
+## Overview
 
-**CardioPulse** is an automated clinical risk assessment web application designed to stratify cardiovascular disease (CVD) risk in individuals. By evaluating **16 clinical biomarkers and lifestyle factors**, the system computes a calibrated disease probability score, classifies the patient into distinct risk tiers, and outputs personalized lifestyle and clinical recommendations.
+The system collects clinical indicators through a form, preprocesses and scales the inputs, and runs inference using a trained model. It outputs:
+- Disease presence detection (Detected / Not Detected)
+- Risk percentage score (0% - 100%)
+- Risk level classification (Very Low, Low, Moderate, High, Very High)
+- Clinical indicator breakdown
 
----
-
-## Project Directory Structure
+## Project Structure
 
 ```text
-├── .env.example            # Environment variable configuration template
-├── package.json            # Node.js project manifest & dependencies
-├── server.js               # Express.js backend server & risk calculation engine
-├── views/
-│   ├── home.ejs            # Diagnostic input form & landing presentation
-│   └── result.ejs          # Clinical assessment report & gauge visualization
-└── static/
-    ├── css/
-    │   └── style.css       # Responsive custom styling & glassmorphism theme
-    ├── js/
-    │   └── script.js       # Client interaction, i18n localization, & gauge animation
-    └── images/
-        └── heart.webp      # Visual assets
+Smart_Heart_Disease_Risk_Prediction/
+|-- data/
+|   `-- raw/
+|       `-- heart.csv
+|-- models/
+|   |-- heart_model.pkl
+|   |-- scaler.pkl
+|   `-- model_metrics.json
+|-- src/
+|   |-- config.py
+|   |-- data_processing.py
+|   |-- train.py
+|   `-- predict.py
+|-- static/
+|-- templates/
+|   |-- home.html
+|   `-- result.html
+|-- app.py
+|-- requirements.txt
+`-- README.md
 ```
 
----
+## Features Used for Prediction
 
-## Clinical Parameters & Biomarkers (16 Inputs)
+The model uses 13 clinical features:
+1. age: Age of the patient in years
+2. sex: Sex (Male, Female)
+3. cp: Chest pain type (Typical Angina, Atypical Angina, Non-anginal Pain, Asymptomatic)
+4. trestbps: Resting blood pressure (in mm Hg)
+5. chol: Serum cholesterol (in mg/dl)
+6. fbs: Fasting blood sugar > 120 mg/dl (Yes, No)
+7. restecg: Resting electrocardiographic results
+8. thalach: Maximum heart rate achieved
+9. exang: Exercise-induced angina (Yes, No)
+10. oldpeak: ST depression induced by exercise relative to rest
+11. slope: Slope of peak exercise ST segment
+12. ca: Number of major vessels colored by fluoroscopy (0-3)
+13. thal: Thalassemia status (Normal, Fixed Defect, Reversible Defect)
 
-The system leverages diagnostic metrics based on the **Cleveland Heart Disease Dataset** and **Framingham Risk Score criteria**:
+## Requirements
 
-| # | Parameter | Medical Relevance | Normal Range / Values |
-|---|---|---|---|
-| 1 | **Age** | Major non-modifiable risk factor | Years (1 - 120) |
-| 2 | **Gender / Sex** | Biological risk variance | Male / Female |
-| 3 | **Chest Pain Type (CP)** | Symptomatic angina grading | Typical Angina, Atypical Angina, Non-Anginal, Asymptomatic |
-| 4 | **Resting Blood Pressure (BP)** | Hypertension indicator | mmHg (Normal: 90 - 120) |
-| 5 | **Serum Cholesterol** | Hyperlipidemia assessment | mg/dL (Desirable: < 200) |
-| 6 | **Fasting Blood Sugar (FBS)** | Diabetic cardiovascular risk | Normal (<=120 mg/dL) vs Elevated (>120 mg/dL) |
-| 7 | **Resting ECG** | Cardiac conduction & hypertrophy | Normal, ST-T Abnormality, LV Hypertrophy |
-| 8 | **Maximum Heart Rate (HR)** | Chronotropic cardiovascular reserve | bpm (Max: ~220 - Age) |
-| 9 | **Exercise-Induced Angina (Exang)** | Coronary ischemia during exertion | Yes / No |
-| 10 | **ST Depression (Oldpeak)** | Myocardial ischemia under stress | mm (0.0 to 6.0+ mm) |
-| 11 | **ST Slope** | ST segment peak exertion slope | Upsloping, Flat, Downsloping |
-| 12 | **Major Vessels (CA)** | Fluoroscopy coronary calcification | 0 to 4 vessels |
-| 13 | **Thalassemia Status (Thal)** | Blood flow defect scintigraphy | Normal, Fixed Defect, Reversible Defect |
-| 14 | **Smoking Habit** | Endothelial damage & atherosclerosis | Never, Former, Current |
-| 15 | **Alcohol Consumption** | Hypertension & cardiomyopathy | Never, Occasionally, Regularly |
-| 16 | **Patient Name** | Report identification | Text string |
+- Python 3.10 or higher
+- Dependencies listed in requirements.txt
 
----
+## Installation and Setup
 
-## Technology Stack
+1. Open a terminal and navigate to the project directory:
 
-- **Backend Runtime**: Node.js 22 (ES Modules)
-- **Web Framework**: Express.js
-- **Templating Engine**: EJS (Embedded JavaScript)
-- **Styling**: Bootstrap 5.3 + Custom Responsive Glassmorphism CSS
-- **Icons & Animations**: Bootstrap Icons, AOS (Animate on Scroll)
-- **Localization (i18n)**: Multi-language support (English, Hindi, Hinglish)
+```bash
+cd Smart_Heart_Disease_Risk_Prediction
+```
 
----
+2. Create a virtual environment:
 
-## Evaluation & Triage Tiers
+```bash
+python -m venv .venv
+```
 
-| Risk Score (%) | Classification Tier | Action Recommended |
-|---|---|---|
-| **0.0% – 19.9%** | Very Low Risk | Routine wellness & healthy habits |
-| **20.0% – 39.9%** | Low Risk | Annual screening & balanced diet |
-| **40.0% – 59.9%** | Moderate Risk | Lifestyle adjustments & monitoring |
-| **60.0% – 79.9%** | High Risk | Physician consultation & diagnostic review |
-| **80.0% – 100.0%** | Very High Risk | Immediate specialist triage & cardiology referral |
+3. Activate the virtual environment:
 
----
+- On Windows (PowerShell):
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
 
-## License & Academic Note
+- On Windows (Command Prompt):
+```cmd
+.\.venv\Scripts\activate.bat
+```
 
-Created for my skill evaluation and engineering demonstration. Not intended as a substitute for professional medical advice.
+- On Linux / macOS:
+```bash
+source .venv/bin/activate
+```
+
+4. Install required packages:
+
+```bash
+pip install -r requirements.txt
+```
+
+## Training the Model (Optional)
+
+Pre-trained model artifacts are included in the models directory. To retrain the model on the dataset:
+
+```bash
+python -m src.train
+```
+
+This will retrain the classifier, generate `heart_model.pkl`, `scaler.pkl`, and update evaluation metrics in `model_metrics.json`.
+
+## Running the Application
+
+Start the Flask server:
+
+```bash
+python app.py
+```
+
+Open your browser and visit:
+```text
+http://localhost:5000
+```
+
+## API Endpoints
+
+- GET / : Home page with the patient diagnosis form
+- POST /predict/ : Processes form inputs and returns prediction results
+- GET /api/metrics : Returns model evaluation metrics in JSON format
